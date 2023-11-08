@@ -1,0 +1,169 @@
+<div style="text-align: center">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Home</a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto"></ul>
+
+        <form class="form-inline my-2 my-lg-0 mr-3">
+          <input matInput (keyup)="applyFilter($event)" placeholder="Search" />
+        </form>
+
+        <div class="dropdown">
+          <button
+            class="btn dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <img src="profile.png" alt="profile" height="30" />
+          </button>
+
+          <ul
+            class="dropdown-menu dropdown-menu-right"
+            aria-labelledby="dropdownMenuButton"
+          >
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Log out</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <div class="cards">
+    <div class="student-container" *ngFor="let student of dataSource.data">
+      <mat-card class="student-card">
+        <mat-card-header>
+          <div mat-card-avatar></div>
+          <mat-card-title>{{ student.studentName }}</mat-card-title>
+          <mat-card-subtitle>Reg-Id: {{ student.id }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <!-- <p>Email: {{student.studentEmail}}</p> -->
+          <!-- <p>Phone: {{student.phoneNumber}}</p> -->
+        </mat-card-content>
+        <mat-card-actions>
+          <!-- <button [routerLink]="['/showattendance', student.id]" mat-stroked-button color="primary">
+                  <mat-icon>visibility</mat-icon>
+                </button>
+                <button [routerLink]="['/editdatastudent', student.id]" mat-stroked-button color="accent">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-stroked-button color="warn" (click)="deleteStudent(student.id || 0)">
+                  <mat-icon>delete</mat-icon>
+                </button> -->
+          <button
+            mat-stroked-button
+            color="primary"
+            (click)="viewMore(student.id)"
+          >
+            View More
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="rectangle">
+    <h2>Attendance List</h2>
+
+    <div class="mat-elevation-z8 mt-4 mb-4">
+      <mat-table #table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef class="id">ID</mat-header-cell>
+          <mat-cell *matCellDef="let student">{{ student.id }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef class="EmpName"
+            >Name</mat-header-cell
+          >
+          <mat-cell *matCellDef="let student">{{
+            student.studentName
+          }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+          <mat-header-cell *matHeaderCellDef class="email"
+            >Email</mat-header-cell
+          >
+          <mat-cell *matCellDef="let student">{{
+            student.studentEmail
+          }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="phone">
+          <mat-header-cell *matHeaderCellDef class="phone"
+            >Phone</mat-header-cell
+          >
+          <mat-cell *matCellDef="let student">{{
+            student.phoneNumber
+          }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef class="action"
+            >Action</mat-header-cell
+          >
+          <mat-cell *matCellDef="let student">
+            <button
+              [routerLink]="['/showattendance', student.id]"
+              mat-icon-button
+              color="primary"
+              class="btn-margin"
+            >
+              <mat-icon>visibility</mat-icon>
+            </button>
+            <button
+              [routerLink]="['/editdatastudent', student.id]"
+              mat-icon-button
+              color="primary"
+              class="btn-margin"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              color="warn"
+              class="btn-margin"
+              (click)="deleteStudent(student.id)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
+
+      <mat-paginator
+        [pageSize]="3"
+        [pageSizeOptions]="[5, 10, 25, 100]"
+      ></mat-paginator>
+    </div>
+  </div>
+</div>

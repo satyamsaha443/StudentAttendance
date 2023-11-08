@@ -1,0 +1,30 @@
+<div class="container">
+    <h1 mat-dialog-title style="text-align:center;">Mark Attendance Form</h1>
+    <div mat-dialog-content>
+      <form [formGroup]="studentForm" (ngSubmit)="submitAttendance()" fxLayout="column">
+        <mat-form-field>
+          <mat-label>Student ID</mat-label>
+          <mat-select formControlName="studentId">
+            <mat-option *ngFor="let attend of attendance" [value]="attend.id">{{attend.id}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+          <mat-label>Enter Date</mat-label>
+          <input matInput type="date" formControlName="date" />
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="present">
+            <mat-option value="Present">Present</mat-option>
+            <mat-option value="Absent">Absent</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
+    </div>
+    <div mat-dialog-actions style="justify-content: center;">
+      <button mat-button [mat-dialog-close]="false">Cancel</button>
+      <button mat-raised-button color="primary" [mat-dialog-close]="true" cdkFocusInitial (click)="submitAttendance()">Submit</button>
+    </div>
+  </div>

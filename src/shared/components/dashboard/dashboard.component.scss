@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+.dashboard-container {
+  font-family: 'Roboto', sans-serif;
+
+  .dashboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2rem;
+
+    .dashboard-title {
+      margin: 0;
+      color: #333;
+      font-size: 2.5rem;
+      font-weight: 500;
+    }
+
+    .add-student-btn {
+      background-color: #5c6bc0;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      transition: background-color 0.3s;
+
+      .material-icons {
+        margin-right: 0.5rem;
+      }
+
+      &:hover {
+        background-color: #3f51b5;
+      }
+    }
+  }
+
+  .student-table-container {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+    mat-form-field {
+      width: 100%;
+    }
+
+    table {
+      width: 100%;
+
+      mat-cell, mat-header-cell {
+        padding: 0.8rem;
+      }
+    }
+
+    button {
+      margin-right: 0.5rem;
+      transition: transform 0.2s;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+
+    .mat-icon {
+      vertical-align: middle;
+    }
+  }
+}

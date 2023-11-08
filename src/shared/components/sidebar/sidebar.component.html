@@ -1,0 +1,34 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="false">
+      <mat-toolbar>Menu</mat-toolbar>
+      <mat-nav-list>
+        <a mat-list-item [routerLink]="['dashboard']" routerLinkActive="active-link">
+          <mat-icon class="example-icon">dashboard</mat-icon> &nbsp;&nbsp;
+          <span>Dashboard</span>
+        </a>
+        <a mat-list-item [routerLink]="['addstudent']" routerLinkActive="active-link">
+          <mat-icon class="example-icon">library_add</mat-icon> &nbsp;&nbsp;
+          <span>Add Student</span>
+        </a>
+        <a mat-list-item [routerLink]="['attendancegive']" routerLinkActive="active-link">
+          <mat-icon class="example-icon">assignment</mat-icon> &nbsp;&nbsp;
+          <span>Mark Attendance</span>
+        </a>
+        <!-- <a mat-list-item routerLink="/charts" routerLinkActive="active-link">
+          <mat-icon class="example-icon">insert_chart</mat-icon> &nbsp;&nbsp;
+          <span>Charts</span>
+        </a> -->
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar>
+        <button type="button" mat-icon-button (click)="drawer.toggle()"> <!-- toggle button -->
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>Student Management</span>
+      </mat-toolbar>
+      <!-- Your Page Content Here -->
+      <router-outlet></router-outlet>    <!-- add your content here -->
+    </mat-sidenav-content>
+  </mat-sidenav-container>

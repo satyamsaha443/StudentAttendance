@@ -1,0 +1,32 @@
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h1 class="m-0 font-weight-bold mat-title text-primary text-center">Student {{ id }} Attendance</h1>
+  </div>
+
+  <div class="card-body">
+    <div class="table-responsive">
+      <table mat-table [dataSource]="attendance" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef>Date</th>
+          <td mat-cell *matCellDef="let att">{{ att.date | date }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell *matCellDef="let att">
+            <span *ngIf="att.present">Present</span>
+            <span *ngIf="!att.present">Absent</span>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card-footer">
+    <button mat-button color="warn" routerLink="/dashboard">Back</button>
+  </div>
+</div>
